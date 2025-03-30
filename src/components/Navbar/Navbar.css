@@ -1,0 +1,18 @@
+.navbar{
+    height: 8vh;
+    width: 100vw;
+    background-color: rgb(23, 23, 23);
+}
+.btn-nav{
+    height: 8vh;
+    background-color: rgb(23, 23, 23);
+    color: white;
+    font-size:large;
+    border-radius: 0;
+    width: 200px;
+    border-color:rgb(17, 17, 17);
+}
+button:hover{
+    background-color: rgb(46, 46, 46);
+    border-color: rgb(43, 43, 43);
+}
