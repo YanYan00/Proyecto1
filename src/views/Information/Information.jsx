@@ -1,6 +1,10 @@
+import { useContext } from 'react';
 import './Information.css'
+import { InformationContext } from '../../context/InformationContext';
 
-function Information(){
+const Information = () =>{
+    const {tarifas,descuentos} = useContext(InformationContext);
+    console.log(tarifas);
     return(
         <div className='information-cont'>
             <div className='vueltas'>
@@ -14,21 +18,20 @@ function Information(){
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>10 vueltas o máx 10 min</td>
-                            <td>15.000</td>
-                            <td>30 min</td>
-                        </tr>
-                        <tr>
-                            <td>15 vueltas o máx 15 min</td>
-                            <td>20.000</td>
-                            <td>35 min</td>
-                        </tr>
-                        <tr>
-                            <td>20 vueltas o máx 20 min</td>
-                            <td>25.000</td>
-                            <td>40 min</td>
-                        </tr>
+                        {tarifas.length>0?(
+                                tarifas.map((tarifa,index)=>(
+                                <tr key={index}>
+                                    <td>{tarifa.vueltasTiempo}</td>
+                                    <td>{tarifa.precio}</td>
+                                    <td>{tarifa.duracion}</td>
+                                </tr>
+                            ))
+                            ):(
+                                <tr>
+                                    <td>Cargando tarifas...</td>
+                                </tr>
+                            )
+                        }
                     </tbody>
                 </table>
                 <h2>Tarifa y duracion de las reservas</h2>
@@ -37,25 +40,22 @@ function Information(){
                         <tr>
                             <th>Número de vueltas o tiempo máximo</th>
                             <th>Precios regulares</th>
-                            <th>Duración total de la reserva</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>10 vueltas o máx 10 min</td>
-                            <td>15.000</td>
-                            <td>30 min</td>
-                        </tr>
-                        <tr>
-                            <td>15 vueltas o máx 15 min</td>
-                            <td>20.000</td>
-                            <td>35 min</td>
-                        </tr>
-                        <tr>
-                            <td>20 vueltas o máx 20 min</td>
-                            <td>25.000</td>
-                            <td>40 min</td>
-                        </tr>
+                        {descuentos.length>0?(
+                            descuentos.map((dscto,index)=>(
+                                <tr>
+                                    <td>{dscto.numeroPersonas}</td>
+                                    <td>{dscto.descuento}%</td>
+                                </tr>
+                            )
+                        )):(
+                            <tr>
+                                <td>Cargando descuentos...</td>
+                                
+                            </tr>
+                        )}
                     </tbody>
                 </table>   
             </div>  
